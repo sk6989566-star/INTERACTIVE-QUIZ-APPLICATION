@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>General Knowledge Quiz</title>
+<style>
+h1{text-align:center; color:#1f7854;}
+body { font-family: Arial; background:#eef2f3; display:flex; justify-content:center; align-items:center; height:100vh; }
+.container { background:white; padding:20px; border-radius:10px; width:420px; box-shadow:0 0 10px rgba(0,0,0,0.1);} 
+button { margin-top:10px; padding:10px; width:100%; border:none; border-radius:5px; cursor:pointer; }
+.correct { background: #4CAF50; color:white; }
+.wrong { background: #f44336; color:white; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>SELECT THE CORRECT ANSWER</h1>
+<h2 id="question"></h2>
+<div id="answers"></div>
+<p id="score"></p>
+<button onclick="nextQuestion()">Next Question</button>
+</div>
+
+<script>
+const quizData = [
+  {
+    question: "1. What is the capital of India?",
+    answers: ["Mumbai", "Chennai", "Delhi", "Kolkata"],
+    correct: 2
+  },
+  {
+    question: "2. Which planet is known as the Red Planet?",
+    answers: ["Earth", "Mars", "Jupiter", "Venus"],
+    correct: 1
+  },
+  {
+    question: "3. Who is known as the Father of the Nation in India?",
+    answers: ["Nehru", "Bose", "Patel", "Gandhi"],
+    correct: 3
+  },
+  {
+    question: "4. Which is the largest ocean in the world?",
+    answers: ["Atlantic", "Indian", "Pacific", "Arctic"],
+    correct: 2
+  },
+  {
+    question: "5.Which gas do plants use for photosynthesis?",
+    answers: ["Carbon Dioxide", "Nitrogen", "Oxygen", "Hydrogen"],
+    correct: 0
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+
+function loadQuestion() {
+  const q = quizData[currentQ];
+  document.getElementById("question").innerText = q.question;
+  const answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+
+  q.answers.forEach((ans, index) => {
+    const btn = document.createElement("button");
+    btn.innerText = ans;
+    btn.onclick = () => checkAnswer(index);
+    answersDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(index) {
+  const correct = quizData[currentQ].correct;
+  const buttons = document.querySelectorAll("#answers button");
+
+  buttons.forEach((btn, i) => {
+    if(i === correct) btn.classList.add("correct");
+    if(i === index && i !== correct) btn.classList.add("wrong");
+  });
+
+  if(index === correct) score++;
+  document.getElementById("score").innerText = "Score: " + score;
+}
+
+function nextQuestion() {
+  currentQ++;
+  if(currentQ < quizData.length) {
+    loadQuestion();
+  } else {
+    document.querySelector(".container").innerHTML = `<h2>Quiz Completed</h2><p>Your Score: ${score}/${quizData.length}</p>`;
+  }
+}
+
+loadQuestion();
+</script>
+</body>
+</html>

@@ -29,6 +29,7 @@ To calculate and display the final score at the end of the quiz.
 To enhance understanding of DOM manipulation and event handling.
 To build a simple and responsive UI using CSS.
 3. Key Activities
+
 a) Designing the User Interface
 Created a clean and simple layout using HTML.
 Styled the application using CSS for better user experience.
@@ -52,6 +53,7 @@ Ensured smooth transition between questions.
 g) Displaying Final Result
 Displayed a completion message after the last question.
 Showed the final score in a clear format.
+
 4. Conclusion
 
 This project helps in understanding the fundamentals of web development, especially JavaScript logic and DOM manipulation. It can be further enhanced by adding features like timers, animations, difficulty levels, or storing results, making it more advanced and interactive.
